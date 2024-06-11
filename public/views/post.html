@@ -1,0 +1,112 @@
+<div class="tr-breadcrumb bg-image section-before">
+	<div class="container">
+		<div class="breadcrumb-info text-center">
+			<div class="page-title">
+				<h1>Post/Edit Your Wiki</h1>
+			</div>
+			<ol class="breadcrumb">
+				<li><a href="#!/">Home</a></li>
+				<li class="active">Wiki Post/Edit</li>
+			</ol>
+		</div>
+	</div>
+</div>
+
+<form name="myForm"> 
+  <div class="tr-post-job page-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+      
+          <div class="section">
+            <span class="tr-title">Wiki Info</span>
+            <div class="row">
+              <div class="col-sm-3">
+                <label>Title</label>
+              </div>
+              <div class="col-sm-9">
+                <span ng-show="myForm.title.$error.required" style="color:red">Required</span>
+                <input name="title" ng-model="title" ng-required="true" type="text" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <label>Category</label>
+              </div>
+              <div class="col-sm-9">
+                <span ng-show="myForm.category.$error.required" style="color:red">Required</span>
+                <select name="category" ng-model="category" ng-required="true" class="form-control">
+                  <option value="" selected>Select a category</option>
+                  <option value="Technology" selected>Technology</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <label>Author</label>
+              </div>
+              <div class="col-sm-9">
+                <span ng-show="myForm.author.$error.required" style="color:red">Required</span>
+                <input name="author" ng-model="author" ng-required="true" type="text" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <label>URL Name</label>
+              </div>
+              <div class="col-sm-9">
+                <span ng-show="myForm.urlName.$error.required" style="color:red">Required</span>
+                <span ng-show="myForm.urlName.$error.pattern" style="color:red">Invalid Url</span>
+                <input name="urlName" ng-model="urlName" ng-required="true" ng-pattern="/^[a-zA-Z0-9-_]+$/" ng-disabled="disableUrl" type="text" class="form-control"/>
+              </div>
+            </div>
+
+            <div class="row" ng-show="urlName">
+              <div class="col-sm-3">
+                <label>Final URL</label>
+              </div>
+              <div ng-model="finalUrl" class="col-sm-9">
+                https://cs157-pubwiki-final-project.joshh091.repl.co/#!/{{urlName}}
+              </div>
+            </div>
+          </div>        
+
+          <div class="section">
+            <span class="tr-title">Wiki Content</span>
+            <div id="editor"></div>
+          </div>
+
+          <div class="section agreement">  
+            <div class="form-group mb-5">
+              <strong>Management Password </strong>
+              <span ng-show="myForm.password.$error.required" style="color:red">Required</span>
+              <input name="password" ng-model="password" ng-required="true" type="password" class="form-control mb-2"/>
+              <small class="form-text text-muted">A password is needed so you can edit this wiki in the future. If this is a new Wiki, enter a new password, if you are editing an existing Wiki, enter the password you set before.</small>
+            </div>
+
+            <div class="mb-5">
+              <input ng-model="checkbox" type="checkbox"/>
+              You agree to our <a href="#" target="_blank">Terms of Use</a> and <a href="#" target="_blank">Privacy Policy</a> and acknowledge that you
+              are the rightful owner of this content.
+            </div>
+
+            <div class="buttons">
+              <button ng-click="save()" ng-show="checkbox" type="button" class="btn btn-primary">Save Wiki</button>
+              <a href="#!/" class="btn button-cancle">Cancel</a>
+              <button ng-click="delete()" type="button" class="btn btn-danger pull-right">Delete Wiki</button>
+            </div>
+          </div>
+
+          <div class="section">
+            <span class="tr-title">Live Site</span>
+            <h3 ng-show="showUrl"><a href="#!/{{ urlName }}">https://cs157-pubwiki-final-project.joshh091.repl.co/#!/{{urlName}}</a></h3>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
