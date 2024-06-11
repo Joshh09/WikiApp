@@ -15,8 +15,8 @@ wikiApp.controller("displayController", function($scope, $http, $routeParams, $s
         $scope.html = response.data.html;
         $scope.category = response.data.category;
         $scope.author = response.data.author;
-        $scope.updatedDate = response.data.updatedDate;
-        $scope.createdDate = response.data.createdDate;
+        $scope.updatedDate = response.data.updatedDate.split('T')[0];
+        $scope.createdDate = response.data.createdDate.split('T')[0];
         $scope.pageViews = response.data.pageViews;
         $scope.urlName = response.data.urlName;
       })
